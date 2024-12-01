@@ -1,6 +1,7 @@
-from algorithms import fifo
+from algorithms import fifo, lru
 
 TESTING_DATA_PATH = "testing-data/"
+TEST_REFERENCE_STRING = "135732345051740"
 FRAME_SIZES = [3, 4, 5, 6]
 
 
@@ -28,11 +29,20 @@ def run_fifo_tests():
                 fifo.run_algorithm(reference_string, frame_size)
 
 
+def run_lru_tests():
+    for testing_data in testing_data_to_array():
+        for reference_string in testing_data:
+            for frame_size in FRAME_SIZES:
+                lru.run_algorithm(reference_string, frame_size)
+
+
 def main():
     # Test to make sure algorithm works
-    fifo.run_algorithm("135732345051740", 5)
+    fifo.run_algorithm(TEST_REFERENCE_STRING, 5)
+    lru.run_algorithm(TEST_REFERENCE_STRING, 5)
 
     # run_fifo_tests()
+    # run_lru_tests()
 
 
 if __name__ == "__main__":
