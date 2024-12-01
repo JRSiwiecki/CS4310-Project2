@@ -1,4 +1,16 @@
+"""Contains LRU algorithm code."""
+
+
 def run_algorithm(reference_string, frame_size):
+    """Runs LRU page replacement algorithm.
+
+    Args:
+        reference_string (string): String of integers that represent pages.
+        frame_size (int): Number of available frames for pages.
+
+    Returns:
+        int: Number of faults that occurred.
+    """
     page_frame = []
     page_frame_order = []
     fault_track = ""

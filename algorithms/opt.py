@@ -1,4 +1,16 @@
+"""Contains OPT algorithm code."""
+
+
 def run_algorithm(reference_string, frame_size):
+    """Runs OPT page replacement algorithm.
+
+    Args:
+        reference_string (string): String of integers that represent pages.
+        frame_size (int): Number of available frames for pages.
+
+    Returns:
+        int: Number of faults that occurred.
+    """
     page_frame = []
     fault_track = ""
     print("Running OPT on", reference_string, "with frame size", frame_size)
