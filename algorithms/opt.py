@@ -45,3 +45,4 @@ def run_algorithm(reference_string, frame_size):
 
     fault_count = fault_track.count("X")
     print("OPT yields", fault_count, "page faults")
+    return fault_count
