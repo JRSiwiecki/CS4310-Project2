@@ -21,11 +21,18 @@ def testing_data_to_array():
     return testing_data_list
 
 
-def main():
+def run_fifo_tests():
     for testing_data in testing_data_to_array():
         for reference_string in testing_data:
             for frame_size in FRAME_SIZES:
                 fifo.run_algorithm(reference_string, frame_size)
+
+
+def main():
+    # Test to make sure algorithm works
+    fifo.run_algorithm("135732345051740", 5)
+
+    # run_fifo_tests()
 
 
 if __name__ == "__main__":
