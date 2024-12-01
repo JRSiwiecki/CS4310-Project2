@@ -1,10 +1,18 @@
-import random, os
+"""
+Main file for running various page replacement algorithms 
+and setting up testing and output.
+"""
+
+import os
+import random
+
 from algorithms import fifo, lru, opt
 
 FRAME_SIZES = [3, 4, 5, 6]
 
 
 def generate_reference_strings():
+    """Generates testing data randomly and outputs data to testing-data/TestingData.txt"""
     folder_name = "testing-data"
     file_name = "TestingData.txt"
 
@@ -24,6 +32,11 @@ def generate_reference_strings():
 
 
 def testing_data_to_array():
+    """Converts testing-data/TestingData.txt from file to array and returns the array.
+
+    Returns:
+        List[String]: List containing reference strings to test on.
+    """
     testing_data_path = "testing-data/"
 
     with open(testing_data_path + "TestingData.txt", "r", encoding="utf-8") as file:
@@ -36,6 +49,15 @@ def testing_data_to_array():
 
 
 def calculate_frame_fault_averages(page_fault_counts):
+    """Calculates average of page faults for each frame size.
+
+    Args:
+        page_fault_counts (List[List[int]]): Contains number of page faults for given algorithm
+        for each frame size.
+
+    Returns:
+        List[float]: Contains averages for fault counts for each frame size.
+    """
     frame_size_averages = []
 
     for frame_index in range(len(FRAME_SIZES)):
@@ -49,6 +71,11 @@ def calculate_frame_fault_averages(page_fault_counts):
 
 
 def run_fifo_tests():
+    """Runs FIFO page replacement algorithm tests.
+
+    Returns:
+        List[float]: Contains averages for fault counts for each frame size.
+    """
     page_fault_counts = []
 
     for reference_string in testing_data_to_array():
@@ -65,6 +92,11 @@ def run_fifo_tests():
 
 
 def run_lru_tests():
+    """Runs LRU page replacement algorithm tests.
+
+    Returns:
+        List[float]: Contains averages for fault counts for each frame size.
+    """
     page_fault_counts = []
 
     for reference_string in testing_data_to_array():
@@ -81,6 +113,11 @@ def run_lru_tests():
 
 
 def run_opt_tests():
+    """Runs OPT page replacement algorithm tests.
+
+    Returns:
+        List[float]: Contains averages for fault counts for each frame size.
+    """
     page_fault_counts = []
 
     for reference_string in testing_data_to_array():
@@ -97,6 +134,7 @@ def run_opt_tests():
 
 
 def main():
+    """Main method, handles running the various tests."""
     test_reference_string = "135732345051740"
 
     # Test to make sure algorithm works
