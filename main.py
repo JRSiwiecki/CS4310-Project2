@@ -36,6 +36,13 @@ def run_lru_tests():
                 lru.run_algorithm(reference_string, frame_size)
 
 
+def run_opt_test():
+    for testing_data in testing_data_to_array():
+        for reference_string in testing_data:
+            for frame_size in FRAME_SIZES:
+                opt.run_algorithm(reference_string, frame_size)
+
+
 def main():
     # Test to make sure algorithm works
     fifo.run_algorithm(TEST_REFERENCE_STRING, 5)
@@ -44,6 +51,7 @@ def main():
 
     # run_fifo_tests()
     # run_lru_tests()
+    # run_opt_tests()
 
 
 if __name__ == "__main__":
