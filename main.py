@@ -35,37 +35,84 @@ def testing_data_to_array():
         return string_list
 
 
+def calculate_frame_fault_averages(page_fault_counts):
+    frame_size_averages = []
+
+    for frame_index in range(len(FRAME_SIZES)):
+        frame_faults = [
+            page_fault_counts[i][frame_index] for i in range(len(page_fault_counts))
+        ]
+
+        frame_size_averages.append(sum(frame_faults) / len(frame_faults))
+
+    return frame_size_averages
+
+
 def run_fifo_tests():
+    page_fault_counts = []
+
     for reference_string in testing_data_to_array():
+        current_frame_page_faults = []
+
         for frame_size in FRAME_SIZES:
-            fifo.run_algorithm(reference_string, frame_size)
+            current_frame_page_faults.append(
+                fifo.run_algorithm(reference_string, frame_size)
+            )
+
+        page_fault_counts.append(current_frame_page_faults)
+
+    return calculate_frame_fault_averages(page_fault_counts)
 
 
 def run_lru_tests():
+    page_fault_counts = []
+
     for reference_string in testing_data_to_array():
+        current_frame_page_faults = []
+
         for frame_size in FRAME_SIZES:
-            lru.run_algorithm(reference_string, frame_size)
+            current_frame_page_faults.append(
+                lru.run_algorithm(reference_string, frame_size)
+            )
+
+        page_fault_counts.append(current_frame_page_faults)
+
+    return calculate_frame_fault_averages(page_fault_counts)
 
 
 def run_opt_tests():
+    page_fault_counts = []
+
     for reference_string in testing_data_to_array():
+        current_frame_page_faults = []
+
         for frame_size in FRAME_SIZES:
-            opt.run_algorithm(reference_string, frame_size)
+            current_frame_page_faults.append(
+                opt.run_algorithm(reference_string, frame_size)
+            )
+
+        page_fault_counts.append(current_frame_page_faults)
+
+    return calculate_frame_fault_averages(page_fault_counts)
 
 
 def main():
     TEST_REFERENCE_STRING = "135732345051740"
 
     # Test to make sure algorithm works
-    fifo.run_algorithm(TEST_REFERENCE_STRING, 5)
-    lru.run_algorithm(TEST_REFERENCE_STRING, 5)
-    opt.run_algorithm(TEST_REFERENCE_STRING, 5)
+    # fifo.run_algorithm(TEST_REFERENCE_STRING, 5)
+    # lru.run_algorithm(TEST_REFERENCE_STRING, 5)
+    # opt.run_algorithm(TEST_REFERENCE_STRING, 5)
 
     # generate_reference_strings()
 
-    # run_fifo_tests()
-    # run_lru_tests()
-    # run_opt_tests()
+    fifo_fault_averages = run_fifo_tests()
+    lru_fault_averages = run_lru_tests()
+    opt_fault_averages = run_opt_tests()
+
+    print(fifo_fault_averages)
+    print(lru_fault_averages)
+    print(opt_fault_averages)
 
 
 if __name__ == "__main__":
