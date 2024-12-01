@@ -5,28 +5,28 @@ FRAME_SIZES = [3, 4, 5, 6]
 
 
 def generate_reference_strings():
-    NUM_STRINGS = 50
-    STRING_LENGTH = 30
-    MAX_PAGE = 7
+    folder_name = "testing-data"
+    file_name = "TestingData.txt"
 
-    FOLDER_NAME = "testing-data"
-    FILE_NAME = "TestingData.txt"
+    os.makedirs(folder_name, exist_ok=True)
+    full_path = os.path.join(folder_name, file_name)
 
-    os.makedirs(FOLDER_NAME, exist_ok=True)
-    full_path = os.path.join(FOLDER_NAME, FILE_NAME)
+    num_strings = 50
+    string_length = 30
+    max_page = 7
 
     with open(full_path, "w", encoding="utf-8") as file:
-        for _ in range(NUM_STRINGS):
+        for _ in range(num_strings):
             reference_string = "".join(
-                str(random.randint(0, MAX_PAGE)) for _ in range(STRING_LENGTH)
+                str(random.randint(0, max_page)) for _ in range(string_length)
             )
             file.write(reference_string + "\n")
 
 
 def testing_data_to_array():
-    TESTING_DATA_PATH = "testing-data/"
+    testing_data_path = "testing-data/"
 
-    with open(TESTING_DATA_PATH + "TestingData.txt", "r", encoding="utf-8") as file:
+    with open(testing_data_path + "TestingData.txt", "r", encoding="utf-8") as file:
         string_list = []
 
         for line in file.readlines():
@@ -97,12 +97,12 @@ def run_opt_tests():
 
 
 def main():
-    TEST_REFERENCE_STRING = "135732345051740"
+    test_reference_string = "135732345051740"
 
     # Test to make sure algorithm works
-    # fifo.run_algorithm(TEST_REFERENCE_STRING, 5)
-    # lru.run_algorithm(TEST_REFERENCE_STRING, 5)
-    # opt.run_algorithm(TEST_REFERENCE_STRING, 5)
+    fifo.run_algorithm(test_reference_string, 5)
+    lru.run_algorithm(test_reference_string, 5)
+    opt.run_algorithm(test_reference_string, 5)
 
     # generate_reference_strings()
 
