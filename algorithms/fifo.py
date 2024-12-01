@@ -22,4 +22,4 @@ def run_algorithm(reference_string, frame_size):
             fault_count += 1
 
     print(fault_track)
-    print("FIFO yields", fault_count, "faults")
+    print("FIFO yields", fault_count, "faults with frame size", frame_size)

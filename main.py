@@ -1,6 +1,7 @@
 from algorithms import fifo
 
 TESTING_DATA_PATH = "testing-data/"
+FRAME_SIZES = [3, 4, 5, 6]
 
 
 def testing_data_to_array():
@@ -23,7 +24,8 @@ def testing_data_to_array():
 def main():
     for testing_data in testing_data_to_array():
         for reference_string in testing_data:
-            fifo.run_algorithm(reference_string, 3)
+            for frame_size in FRAME_SIZES:
+                fifo.run_algorithm(reference_string, frame_size)
 
 
 if __name__ == "__main__":
