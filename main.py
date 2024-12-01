@@ -1,4 +1,4 @@
-from algorithms import fifo, lru
+from algorithms import fifo, lru, opt
 
 TESTING_DATA_PATH = "testing-data/"
 TEST_REFERENCE_STRING = "135732345051740"
@@ -40,6 +40,7 @@ def main():
     # Test to make sure algorithm works
     fifo.run_algorithm(TEST_REFERENCE_STRING, 5)
     lru.run_algorithm(TEST_REFERENCE_STRING, 5)
+    opt.run_algorithm(TEST_REFERENCE_STRING, 5)
 
     # run_fifo_tests()
     # run_lru_tests()
