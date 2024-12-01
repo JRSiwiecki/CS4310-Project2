@@ -1,4 +1,7 @@
+from algorithms import fifo
+
 TESTING_DATA_PATH = "testing-data/"
+FRAME_SIZES = [3, 4, 5, 6]
 
 
 def testing_data_to_array():
@@ -18,8 +21,18 @@ def testing_data_to_array():
     return testing_data_list
 
 
+def run_fifo_tests():
+    for testing_data in testing_data_to_array():
+        for reference_string in testing_data:
+            for frame_size in FRAME_SIZES:
+                fifo.run_algorithm(reference_string, frame_size)
+
+
 def main():
-    print(testing_data_to_array())
+    # Test to make sure algorithm works
+    fifo.run_algorithm("135732345051740", 5)
+
+    # run_fifo_tests()
 
 
 if __name__ == "__main__":
